@@ -29,7 +29,7 @@ def sales_generated(con, cur):
 
 def Get_Inventory(con, cur):
     try:
-        query="SELECT Model_name, COUNT(*) as NumModels from VEHICLE GROUP BY Model_name"
+        query="SELECT Model_name, COUNT(*) as NumModels from (SELECT * FROM VEHICLE WHERE Vehicle_id NOT IN (SELECT s.Vehicle_id  FROM SALE s)) T GROUP BY Model_name;"
         cur.execute(query)
         if(cur.rowcount>0):    
             print ("{:<40} {:<4}".format('Model_name', 'NumModels')) 
