@@ -263,7 +263,7 @@ CREATE TABLE `EMPLOYEE_HAS_VOUCHER` (
   `Voucher_number` int NOT NULL,
   PRIMARY KEY (`Employee_id`,`Voucher_number`),
   KEY `Voucher_number` (`Voucher_number`),
-  CONSTRAINT `EMPLOYEE_HAS_VOUCHER_ibfk_1` FOREIGN KEY (`Employee_id`) REFERENCES `EMPLOYEE` (`Employee_id`),
+  CONSTRAINT `EMPLOYEE_HAS_VOUCHER_ibfk_1` FOREIGN KEY (`Employee_id`) REFERENCES `EMPLOYEE` (`Employee_id`) ON DELETE CASCADE,
   CONSTRAINT `EMPLOYEE_HAS_VOUCHER_ibfk_2` FOREIGN KEY (`Voucher_number`) REFERENCES `VOUCHER` (`Voucher_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -341,7 +341,7 @@ CREATE TABLE `MANAGER` (
   `Manager_id` int NOT NULL,
   `start_date` date DEFAULT NULL COMMENT 'Date on which he was promoted',
   PRIMARY KEY (`Manager_id`),
-  CONSTRAINT `MANAGER_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `EMPLOYEE` (`Employee_id`)
+  CONSTRAINT `MANAGER_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `EMPLOYEE` (`Employee_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -407,7 +407,7 @@ CREATE TABLE `SALE` (
   CONSTRAINT `SALE_ibfk_1` FOREIGN KEY (`Vehicle_id`) REFERENCES `VEHICLE` (`Vehicle_id`),
   CONSTRAINT `SALE_ibfk_2` FOREIGN KEY (`Customer_Aadhar_no`) REFERENCES `CUSTOMER` (`Aadhar_number`),
   CONSTRAINT `SALE_ibfk_3` FOREIGN KEY (`Service_Center_id`) REFERENCES `SERVICE_CENTER` (`Center_id`),
-  CONSTRAINT `SALE_ibfk_4` FOREIGN KEY (`SalesPerson_id`) REFERENCES `SALESPERSON` (`SalesPerson_id`)
+  CONSTRAINT `SALE_ibfk_4` FOREIGN KEY (`SalesPerson_id`) REFERENCES `SALESPERSON` (`SalesPerson_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -433,8 +433,8 @@ CREATE TABLE `SALESPERSON` (
   `Reporter_id` int DEFAULT NULL,
   PRIMARY KEY (`SalesPerson_id`),
   KEY `Reporter_id` (`Reporter_id`),
-  CONSTRAINT `SALESPERSON_ibfk_1` FOREIGN KEY (`SalesPerson_id`) REFERENCES `EMPLOYEE` (`Employee_id`),
-  CONSTRAINT `SALESPERSON_ibfk_2` FOREIGN KEY (`Reporter_id`) REFERENCES `SALESPERSON` (`SalesPerson_id`)
+  CONSTRAINT `SALESPERSON_ibfk_1` FOREIGN KEY (`SalesPerson_id`) REFERENCES `EMPLOYEE` (`Employee_id`)  ON DELETE CASCADE,
+  CONSTRAINT `SALESPERSON_ibfk_2` FOREIGN KEY (`Reporter_id`) REFERENCES `SALESPERSON` (`SalesPerson_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

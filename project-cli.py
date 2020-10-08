@@ -4,7 +4,7 @@ import pymysql.cursors
 
 import menu
 
-DATABASE_NAME = "TESTING"
+DATABASE_NAME = "VEHICLE_DATABASE"
 PORT = 5005
 
 

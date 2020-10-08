@@ -22,6 +22,7 @@ def removeEmployee(con, cur):
             query = ""
         cur.execute(query)
         print("Employee entry removed")
+        con.commit()
         wait()
     except Exception as e:
         con.rollback()
