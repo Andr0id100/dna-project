@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `BIKE`;
 CREATE TABLE `BIKE` (
   `Vehicle_id` varchar(255) NOT NULL,
   PRIMARY KEY (`Vehicle_id`),
-  CONSTRAINT `Bike_ibfk_1` FOREIGN KEY (`Vehicle_id`) REFERENCES `VEHICLE` (`Vehicle_id`)
+  CONSTRAINT `Bike_ibfk_1` FOREIGN KEY (`Vehicle_id`) REFERENCES `VEHICLE` (`Vehicle_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,7 +52,7 @@ CREATE TABLE `CAR` (
   `Fuel` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Vehicle_id`),
   UNIQUE KEY `Vehicle_id` (`Vehicle_id`),
-  CONSTRAINT `CAR_ibfk_1` FOREIGN KEY (`Vehicle_id`) REFERENCES `VEHICLE` (`Vehicle_id`)
+  CONSTRAINT `CAR_ibfk_1` FOREIGN KEY (`Vehicle_id`) REFERENCES `VEHICLE` (`Vehicle_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -155,7 +155,7 @@ CREATE TABLE `CONTRACTS` (
   `Cleaning_Agency_id` int NOT NULL,
   PRIMARY KEY (`Manager_id`,`Cleaning_Agency_id`),
   KEY `Cleaning_Agency_id` (`Cleaning_Agency_id`),
-  CONSTRAINT `CONTRACTS_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`) ON DELETE SET NULL,
+  CONSTRAINT `CONTRACTS_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`) ON DELETE CASCADE,
   CONSTRAINT `CONTRACTS_ibfk_2` FOREIGN KEY (`Cleaning_Agency_id`) REFERENCES `CLEANING_AGENCY` (`Registration_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
