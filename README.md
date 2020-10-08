@@ -31,5 +31,7 @@ python3 project-cli.py
 You should now be in the CLI
 
 __Some Details (Key Points)__
-* Has all the functions as mentioned in the document and diagram
-* We autoincrement Sale_id
+* Has all the functions as mentioned in the document and diagram.
+* We autoincrement Sale_id.
+* ON DELETE CASCADE/NULL Foreign keys as was deemed fit in the scenario.
+* Didn't implement Update contact number for employee, we saw it best to skip employee contact details.
