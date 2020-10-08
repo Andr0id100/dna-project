@@ -55,6 +55,7 @@ def update_contact(con, cur):
 
     except Exception as e:
         print("Error during updation")
+        con.commit()
         print(">>", e)
         wait()
 
@@ -98,15 +99,17 @@ def Update_Address(con, cur):
 
 def update_hours(con, cur):
     try:
-        eid = input("Enter employee id: ")
-        hours = input("Enter new number of hours: ")
+        eid = int(input("Enter employee id: "))
+        hours = int(input("Enter new number of hours: "))
 
-        query = "UPDATE EMPLOYEE SET HOURS={} WHERE Employee_id={}".format(eid, hours)
+        query = "UPDATE EMPLOYEE SET Hours={} WHERE Employee_id={}".format(hours, eid)
         cur.execute(query)
         con.commit()
         print("Updated successfully")
         wait()
+
     except Exception as e:
+        con.rollback()
         clear()
         print("Error during updation")
         print(">>", e)
