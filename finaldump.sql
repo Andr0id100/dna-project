@@ -155,7 +155,7 @@ CREATE TABLE `CONTRACTS` (
   `Cleaning_Agency_id` int NOT NULL,
   PRIMARY KEY (`Manager_id`,`Cleaning_Agency_id`),
   KEY `Cleaning_Agency_id` (`Cleaning_Agency_id`),
-  CONSTRAINT `CONTRACTS_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`),
+  CONSTRAINT `CONTRACTS_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`) ON DELETE SET NULL,
   CONSTRAINT `CONTRACTS_ibfk_2` FOREIGN KEY (`Cleaning_Agency_id`) REFERENCES `CLEANING_AGENCY` (`Registration_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -368,7 +368,7 @@ CREATE TABLE `PURCHASES_VEHICLE_FROM` (
   PRIMARY KEY (`Factory_id`),
   KEY `Manager_id` (`Manager_id`),
   CONSTRAINT `PURCHASES_VEHICLE_FROM_ibfk_1` FOREIGN KEY (`Factory_id`) REFERENCES `FACTORY` (`Registration_number`),
-  CONSTRAINT `PURCHASES_VEHICLE_FROM_ibfk_2` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`)
+  CONSTRAINT `PURCHASES_VEHICLE_FROM_ibfk_2` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -434,7 +434,7 @@ CREATE TABLE `SALESPERSON` (
   PRIMARY KEY (`SalesPerson_id`),
   KEY `Reporter_id` (`Reporter_id`),
   CONSTRAINT `SALESPERSON_ibfk_1` FOREIGN KEY (`SalesPerson_id`) REFERENCES `EMPLOYEE` (`Employee_id`)  ON DELETE CASCADE,
-  CONSTRAINT `SALESPERSON_ibfk_2` FOREIGN KEY (`Reporter_id`) REFERENCES `SALESPERSON` (`SalesPerson_id`) ON DELETE CASCADE
+  CONSTRAINT `SALESPERSON_ibfk_2` FOREIGN KEY (`Reporter_id`) REFERENCES `SALESPERSON` (`SalesPerson_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
