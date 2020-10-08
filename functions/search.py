@@ -20,10 +20,14 @@ def getinfo_accto_vehicleID_partialsearch(con, cur):
             print("No such vehicle has been sold yet!!!")
         else:
             print("The number of SOLD vehicles with partial match in Vehicle Id : ")
+            count = 0
             for x in myresult:
                 if re.search(strp, x["Vehicle_id"]):
+                    count += 1
                     print(x["First_name"], " ", x["Last_name"], " ",
                           x["Email"], " ", x["Vehicle_id"], " ", x["Model_name"])
+            if count == 0:
+                print("None")
         wait()
     except Exception as e:
         con.rollback()

@@ -1,0 +1,8 @@
+Problems with database:
+Engine details in creation query
+
+Problems with dummy data:
+Inconsistent Capitalzation atleast in vehicles, check else
+
+Probelms with functions:
+Get customers per model

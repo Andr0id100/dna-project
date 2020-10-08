@@ -27,6 +27,8 @@ def get_total_salary(con, cur):
             print("No records found!")
             wait()
             return None
+
+        print("Total Salary:", data)
         
         con.commit()
         wait()

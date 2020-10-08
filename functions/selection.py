@@ -36,10 +36,10 @@ def getinfoCustomer(con, cur):
             wait()
             return None
 
-        print("Aadhar_number First_name Last_name Email Address")
+        # print("Aadhar_number First_name Last_name Email Address")
+        print("{:15} {:15} {:15} {:30} {}".format("Aadhar Number", "First Name", "Last Name", "Email", "Address"))        
         for x in myresult:
-            print(x["Aadhar_number"], "      ", x["First_name"], "     ",
-                  x["Last_name"], "     ", x["Email"], " ", x["Address"])
+            print("{:<15} {:15} {:15} {:30} {}".format(x["Aadhar_number"], x["First_name"], x["Last_name"], x["Email"], x["Address"]))
         wait()
     
     
@@ -83,7 +83,7 @@ def getinfoEmployee(con, cur):
         
         print("{:15} {:15} {:15} {:10} {:15} {:10}".format("Employee Id", "First Name", "Last Name", "Salary", "Pan Number", "Hours"))
         for row in data:
-            print("{:15} {:15} {:15} {:10} {:15} {:10}".format(row["Employee_id"], row["First_name"], row["Last_name"], row["Salary"], row["Pan_number"], row["Hours"]))
+            print("{:<15} {:<15} {:<15} {:<10} {:<15} {:<10}".format(row["Employee_id"], row["First_name"], row["Last_name"], row["Salary"], row["Pan_number"], row["Hours"]))
 
         con.commit()
         wait()

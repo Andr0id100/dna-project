@@ -9,14 +9,18 @@ clear = lambda : sp.call('clear', shell=True)
 wait = lambda: input("Press ENTER key to continue")
 
 def sales_generated(con, cur):
-    query = "SELECT SalesPerson_id, SUM(Sale_price), COUNT(Sale_id) FROM SALE GROUP BY SalesPerson_id"
+    query = "SELECT SALE.SalesPerson_id, EMPLOYEE.First_name, EMPLOYEE.Last_name, SUM(Sale_price), COUNT(Sale_id) FROM EMPLOYEE JOIN SALE WHERE Employee_id=SalesPerson_id GROUP BY SalesPerson_id"
     try:
         cur.execute(query)
         data = cur.fetchall()
-        print("{:15} {:35} {:15}".format("Salesperson Id", "Total Sales generated (in Rs.)", "Vehicles Sold"))
+        if len(data) == 0:
+            print("No records found!")
+            wait()
+            return None;
+        print("{:15} {:20} {:35} {:15}".format("Salesperson Id", "Name", "Total Sales generated (in Rs.)", "Vehicles Sold"))
 
         for row in data:
-            print("{:<15} {:<35} {:<15}".format(row["SalesPerson_id"], int(row["SUM(Sale_price)"]), row["COUNT(Sale_id)"]))
+            print("{:<15} {:20} {:<35} {:<15}".format(row["SalesPerson_id"], row["First_name"] + " " + row["Last_name"],int(row["SUM(Sale_price)"]), row["COUNT(Sale_id)"]))
 
         wait()
 
@@ -52,9 +56,10 @@ def getVehiclesSoldperModel(con ,cur):
             print("No vehicle has been sold yet!!!")
         else:
             print("The number of vehicles sold per model : ")
-            print("Model name         Count")
+            # print("Model name         Count")
+            print("{:40} {}".format("Model name", "Count"))
             for x in myresult:
-                print(x["Model_name"], "       ", x["Number_sold"])
+                print("{:<40} {}".format(x["Model_name"], x["Number_sold"]))
         wait()
     except Exception as e:
         con.rollback()
