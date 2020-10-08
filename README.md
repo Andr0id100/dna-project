@@ -14,7 +14,7 @@ __In project_cli.py we've hardcoded__
 __To Setup Database:__
 * Create (If Already Doesn't Exist)
 ```
-CREATE DATABASE VECHILE_DATABASE; 
+CREATE DATABASE VEHICLE_DATABASE; 
 USE VEHICLE_DATABASE
 ```
 * Import Database (Use path to the file according to where it is stored in your pc)
