@@ -37,9 +37,9 @@ def getinfoCustomer(con, cur):
             return None
 
         # print("Aadhar_number First_name Last_name Email Address")
-        print("{:15} {:15} {:15} {:30} {}".format("Aadhar Number", "First Name", "Last Name", "Email", "Address"))        
+        print("{:15} {:15} {:15} {:35} {}".format("Aadhar Number", "First Name", "Last Name", "Email", "Address"))        
         for x in myresult:
-            print("{:<15} {:15} {:15} {:30} {}".format(x["Aadhar_number"], x["First_name"], x["Last_name"], x["Email"], x["Address"]))
+            print("{:<15} {:15} {:15} {:35} {}".format(x["Aadhar_number"], x["First_name"], x["Last_name"], x["Email"], x["Address"]))
         wait()
     
     
@@ -64,7 +64,7 @@ def getinfoEmployee(con, cur):
             eid = input("Enter Id to search: ")
             query = "SELECT * FROM EMPLOYEE WHERE Employee_id='{}'".format(eid)
         elif ch == 2:
-            name = input("Enter Name to search: ")
+            name = input("Enter Name to search (using First name OR Last name (not both)): ")
             query = "SELECT * FROM EMPLOYEE WHERE First_name='{}' OR Last_name='{}'".format(name, name)
         else:
             clear()
@@ -113,7 +113,7 @@ def Get_Salary(con, cur):
             for row in cur:
                 print ("{:<10} {:<10}".format(row['Employee_id'], row['Salary'])) 
         else:
-            print("Employe with id doesn't exist")
+            print("Employee with id doesn't exist")
         wait()
     except ValueError:
         print("Please enter a valid Integer") 
