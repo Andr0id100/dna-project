@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Bike`
+-- Table structure for table `BIKE`
 --
 
-DROP TABLE IF EXISTS `Bike`;
+DROP TABLE IF EXISTS `BIKE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Bike` (
+CREATE TABLE `BIKE` (
   `Vehicle_id` varchar(255) NOT NULL,
   PRIMARY KEY (`Vehicle_id`),
   CONSTRAINT `Bike_ibfk_1` FOREIGN KEY (`Vehicle_id`) REFERENCES `VEHICLE` (`Vehicle_id`)
@@ -30,12 +30,12 @@ CREATE TABLE `Bike` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Bike`
+-- Dumping data for table `BIKE`
 --
 
-LOCK TABLES `Bike` WRITE;
-/*!40000 ALTER TABLE `Bike` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Bike` ENABLE KEYS */;
+LOCK TABLES `BIKE` WRITE;
+/*!40000 ALTER TABLE `BIKE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BIKE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `CAR`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CAR` (
-  `Vehicle_id` varchar(255) NOT NULL,
+  `Vehicle_id` varchar(255) NOT NULL UNIQUE,
   `Car_Type` varchar(255) NOT NULL,
   `Fuel` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Vehicle_id`),
@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS `CLEANING_AGENCY_CONTACT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CLEANING_AGENCY_CONTACT` (
-  `Contact_number` int NOT NULL,
+  `Contact_number` bigint NOT NULL,
   `Registration_number` int NOT NULL,
   PRIMARY KEY (`Contact_number`,`Registration_number`),
   KEY `Registration_number` (`Registration_number`),
@@ -146,8 +146,8 @@ DROP TABLE IF EXISTS `CONTRACTS`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CONTRACTS` (
   `Manager_id` int NOT NULL,
-  `Cleaning_Agency_id` int DEFAULT NULL,
-  PRIMARY KEY (`Manager_id`),
+  `Cleaning_Agency_id` int,
+  PRIMARY KEY (`Manager_id`, `Cleaning_Agency_id`),
   KEY `Cleaning_Agency_id` (`Cleaning_Agency_id`),
   CONSTRAINT `CONTRACTS_ibfk_1` FOREIGN KEY (`Manager_id`) REFERENCES `MANAGER` (`Manager_id`),
   CONSTRAINT `CONTRACTS_ibfk_2` FOREIGN KEY (`Cleaning_Agency_id`) REFERENCES `CLEANING_AGENCY` (`Registration_number`)
@@ -171,7 +171,7 @@ DROP TABLE IF EXISTS `CUSTOMER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CUSTOMER` (
-  `Aadhar_number` int NOT NULL,
+  `Aadhar_number` bigint NOT NULL,
   `First_name` varchar(255) NOT NULL,
   `Last_name` varchar(255) DEFAULT NULL,
   `Email` varchar(255) DEFAULT NULL,
@@ -186,7 +186,6 @@ CREATE TABLE `CUSTOMER` (
 
 LOCK TABLES `CUSTOMER` WRITE;
 /*!40000 ALTER TABLE `CUSTOMER` DISABLE KEYS */;
-INSERT INTO `CUSTOMER` VALUES (441,'Paki','Reed','venenatis@orciadipiscing.net','P.O. Box 477, 3950 Molestie Street'),(3148,'Karleigh','Wallace','Cras.eget@Nulla.net','P.O. Box 758, 5722 A Avenue'),(5525,'Chloe','Fowler','laoreet@vitaedolor.com','Ap #846-5464 Maecenas Street'),(18652,'Hector','Wallace','adipiscing.non.luctus@est.co.uk','Ap #447-935 Non Rd.'),(29760,'Kaden','Zamora','eu.euismod.ac@erosNamconsequat.com','Ap #718-7143 Metus Avenue'),(47762,'Maisie','Adams','Phasellus.elit@eleifend.ca','8616 Eu, Av.'),(54300,'Calista','Moody','Sed.eu@lacusQuisquepurus.org','925 Laoreet Street'),(54342,'Omar','Sullivan','a@hendreritaarcu.co.uk','Ap #120-5905 Risus. Avenue'),(56908,'Leilani','Perkins','lectus.Nullam.suscipit@sed.org','Ap #236-1902 Quisque Street'),(64372,'Violet','Rogers','Suspendisse.commodo@quisdiamPellentesque.edu','Ap #734-9017 Ac Street');
 /*!40000 ALTER TABLE `CUSTOMER` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,8 +197,8 @@ DROP TABLE IF EXISTS `CUSTOMER_CONTACT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CUSTOMER_CONTACT` (
-  `Contact_number` int NOT NULL,
-  `Aadhar_number` int NOT NULL,
+  `Contact_number` bigint NOT NULL,
+  `Aadhar_number` bigint NOT NULL,
   PRIMARY KEY (`Contact_number`,`Aadhar_number`),
   KEY `Aadhar_number` (`Aadhar_number`),
   CONSTRAINT `CUSTOMER_CONTACT_ibfk_1` FOREIGN KEY (`Aadhar_number`) REFERENCES `CUSTOMER` (`Aadhar_number`)
@@ -239,7 +238,6 @@ CREATE TABLE `EMPLOYEE` (
 
 LOCK TABLES `EMPLOYEE` WRITE;
 /*!40000 ALTER TABLE `EMPLOYEE` DISABLE KEYS */;
-INSERT INTO `EMPLOYEE` VALUES (1,'VJS','Pranav',12345,'ABG12HJ',8),(2,'Hilda','Mccall',11256,'FVV91CTW6VH',6),(3,'Kenneth','Mcleod',87606,'TMX60DRD6ON',9),(4,'Elizabeth','Bean',27105,'UUQ19DAP0JF',7),(5,'Barclay','Colon',69874,'QTA86PCR8DU',10),(6,'Dorian','Grimes',50408,'WEZ11EBP0DS',8),(7,'Maile','West',88155,'AFT52QEF1ZX',11),(8,'Moana','Vazquez',75410,'NYG97FVS7LR',10),(9,'Janna','Foreman',14243,'ISN91GXX7JB',10),(10,'Bertha','Brown',58952,'QHY28PMV7TZ',9),(11,'Aquila','Ramsey',58430,'CER78KWT6AP',6);
 /*!40000 ALTER TABLE `EMPLOYEE` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +275,7 @@ DROP TABLE IF EXISTS `FACTORY`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FACTORY` (
-  `Registration_number` int NOT NULL,
+  `Registration_number` bigint NOT NULL,
   `Building_number` int DEFAULT NULL,
   `Locality` varchar(255) DEFAULT NULL,
   `City` varchar(255) DEFAULT NULL,
@@ -291,7 +289,6 @@ CREATE TABLE `FACTORY` (
 
 LOCK TABLES `FACTORY` WRITE;
 /*!40000 ALTER TABLE `FACTORY` DISABLE KEYS */;
-INSERT INTO `FACTORY` VALUES (12345,12,'lOCAL','BOMBAY');
 /*!40000 ALTER TABLE `FACTORY` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,8 +300,8 @@ DROP TABLE IF EXISTS `FACTORY_CONTACT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FACTORY_CONTACT` (
-  `Contact_number` int NOT NULL,
-  `Registration_number` int NOT NULL,
+  `Contact_number` bigint NOT NULL,
+  `Registration_number` bigint NOT NULL,
   PRIMARY KEY (`Contact_number`,`Registration_number`),
   KEY `Registration_number` (`Registration_number`),
   CONSTRAINT `FACTORY_CONTACT_ibfk_1` FOREIGN KEY (`Registration_number`) REFERENCES `FACTORY` (`Registration_number`)
@@ -352,7 +349,7 @@ DROP TABLE IF EXISTS `PURCHASES_VEHICLE_FROM`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PURCHASES_VEHICLE_FROM` (
-  `Factory_id` int NOT NULL,
+  `Factory_id` bigint NOT NULL,
   `Manager_id` int DEFAULT NULL,
   PRIMARY KEY (`Factory_id`),
   KEY `Manager_id` (`Manager_id`),
@@ -378,9 +375,9 @@ DROP TABLE IF EXISTS `SALE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SALE` (
-  `Sale_id` int NOT NULL,
+  `Sale_id` int NOT NULL AUTO_INCREMENT,
   `Vehicle_id` varchar(255) DEFAULT NULL,
-  `Customer_Aadhar_no` int NOT NULL,
+  `Customer_Aadhar_no` bigint NOT NULL,
   `Service_Center_id` int DEFAULT NULL,
   `SalesPerson_id` int DEFAULT NULL,
   `Sale_price` int NOT NULL,
@@ -405,7 +402,6 @@ CREATE TABLE `SALE` (
 
 LOCK TABLES `SALE` WRITE;
 /*!40000 ALTER TABLE `SALE` DISABLE KEYS */;
-INSERT INTO `SALE` VALUES (123,'A12 BY6',441,5274,1,10000,1000,'2020-10-06 02:33:23','CREDIT'),(124,'A6F 4Y9',3148,86838,1,20000,10000,'2020-10-06 03:13:23','CASH');
 /*!40000 ALTER TABLE `SALE` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -457,7 +453,6 @@ CREATE TABLE `SERVICE_CENTER` (
 
 LOCK TABLES `SERVICE_CENTER` WRITE;
 /*!40000 ALTER TABLE `SERVICE_CENTER` DISABLE KEYS */;
-INSERT INTO `SERVICE_CENTER` VALUES (5274,'Hop','Ap #318-379 Ridiculus Road'),(18234,'Norman','4264 Sem Rd.'),(32511,'Lacey','273-9531 Blandit. Avenue'),(37572,'Jerome','Ap #658-8431 Imperdiet Street'),(43661,'Patrick','P.O. Box 191, 6557 Ac Ave'),(46403,'Marcia','Ap #786-3559 Sem Rd.'),(47821,'Nyssa','829-3536 Tristique St.'),(49749,'Karleigh','450-4481 Eget St.'),(77182,'Arden','P.O. Box 219, 6653 Ullamcorper Rd.'),(86838,'Irene','657-8328 Augue Rd.');
 /*!40000 ALTER TABLE `SERVICE_CENTER` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,7 +465,7 @@ DROP TABLE IF EXISTS `SUPPLIES`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SUPPLIES` (
   `Vehicle_id` varchar(255) NOT NULL,
-  `Factory_id` int DEFAULT NULL,
+  `Factory_id` bigint DEFAULT NULL,
   `Date` datetime DEFAULT NULL,
   `Price` int DEFAULT NULL,
   PRIMARY KEY (`Vehicle_id`),
@@ -486,7 +481,6 @@ CREATE TABLE `SUPPLIES` (
 
 LOCK TABLES `SUPPLIES` WRITE;
 /*!40000 ALTER TABLE `SUPPLIES` DISABLE KEYS */;
-INSERT INTO `SUPPLIES` VALUES ('A12 BY6',12345,NULL,12000),('A6F 4Y9',12345,NULL,10000);
 /*!40000 ALTER TABLE `SUPPLIES` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -511,7 +505,6 @@ CREATE TABLE `VEHICLE` (
 
 LOCK TABLES `VEHICLE` WRITE;
 /*!40000 ALTER TABLE `VEHICLE` DISABLE KEYS */;
-INSERT INTO `VEHICLE` VALUES ('A12 BY6','Garuda Vega',NULL),('A6F 4Y9','Dictum Phasellus In Associates',5),('A9M 4Q7','Vulputate Risus A Ltd',2),('D4F 9B7','Euismod Corp.',6),('E2P 8V9','Convallis Dolor Quisque Institute',8),('E5J 4B2','Erat Semper PC',3),('I3D 7H4','Praesent Eu Incorporated',5),('K1F 6Q3','Orci Company',6),('L1K 7R4','Urna Incorporated',8),('N8T 0U4','Magnis Dis LLC',8),('P7L 1P6','Ac Mattis Industries',8),('Q1Z 7E6','Id Magna Consulting',3),('R1Q 5W9','Metus Institute',6),('R6J 3R2','Semper Pretium Neque LLC',2),('S8J 0G6','Ornare Industries',5),('U8Z 1M1','Nisi A LLC',7),('Y8J 9P4','Dui Nec Limited',6),('Y8K 9P4','Dui Nec Limited',6),('Z4K 3P7','Purus Nullam Scelerisque Incorporated',3),('Z4Q 3P7','Purus Nullam Scelerisque Incorporated',3),('Z5Y 9U3','Aenean Incorporated',2),('Z9N 4O7','Amet Institute',5);
 /*!40000 ALTER TABLE `VEHICLE` ENABLE KEYS */;
 UNLOCK TABLES;
 
