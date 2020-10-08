@@ -1,15 +1,15 @@
 from functions import selection, projection, aggregate, search, analysis, insert, update, delete
 
 def print_menu():
-    print("1. Get Customer Details")
-    print("2. Get Employee Details")
-    print("3. Get Salary of Employee")
-    print("4. Get Customers by Vehicle Model")
-    print("5. Get Total Salary being paid")
-    print("6. Get Total Profit")
-    print("7. Search for a car")
-    print("8. Get Sales Report")
-    print("9. Get Inventory")
+    print("1.  Get Customer Details")
+    print("2.  Get Employee Details")
+    print("3.  Get Salary of Employee")
+    print("4.  Get Customers by Vehicle Model")
+    print("5.  Get Total Salary being paid")
+    print("6.  Get Total Profit")
+    print("7.  Search for a car")
+    print("8.  Get Sales Report")
+    print("9.  Get Inventory")
     print("10. Get Models sold")
     print("11. Add Employee")
     print("12. Add Sale")
@@ -17,8 +17,9 @@ def print_menu():
     print("14. Add Vehicle")
     print("15. Update Contact")
     print("16. Update Address")
-    print("17. Fire Employee")
-    print("18. Return Vehicle to factory")
+    print("17. Update Employee Hours")
+    print("18. Fire Employee")
+    print("19. Return Vehicle to factory")
     print("-1: Exit")
 
 def dispatch(con, cur, ch):
@@ -55,8 +56,10 @@ def dispatch(con, cur, ch):
     elif ch == 16:
         update.Update_Address(con, cur)
     elif ch == 17:
-        delete.removeEmployee(con, cur)
+        update.update_hours(con, cur)
     elif ch == 18:
+        delete.removeEmployee(con, cur)
+    elif ch == 19:
         delete.Return_Vehicle(con, cur)
     else:
         print("Invalid Choice!")

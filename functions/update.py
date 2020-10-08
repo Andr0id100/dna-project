@@ -103,6 +103,22 @@ def Update_Address(con, cur):
 
     except Exception as e:
         con.rollback()
-        print("Failed to insert into database")
+        print("Failed to update the database")
         print(">>>>>>>>>>>>>", e)
         wait()
+
+
+def update_hours(con, cur):
+    try:
+        eid = input("Enter employee id: ")
+        hours = input("Enter new number of hours: ")
+
+        query = "UPDATE EMPLOYEE SET HOURS={} WHERE Employee_id={}".format(eid, hours)
+        cur.execute(query)
+        con.commit()
+        print("Updated successfully")
+        wait()
+    except Exception as e:
+        clear()
+        print("Error during updation")
+        print(">>", e)
