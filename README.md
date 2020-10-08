@@ -3,7 +3,7 @@
 
 __In project_cli.py we've hardcoded__
 ```
-    DATABASE_NAME='Vehicle' // Line 7
+    DATABASE_NAME='VEHICLE_DATABASE' // Line 7
     PORT=5005 // Line 8
     username='root' // Line 19
     password='blahblah' // Line 20
