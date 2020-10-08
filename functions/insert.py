@@ -32,7 +32,6 @@ def add_employee(con, cur):
 
 def Add_Sale(con, cur):
     try:
-        sale_id=int(input('Please enter Sale id: '))
         vehicle_id=input('Please enter Vehicle id: ')
         tQuery="SELECT * FROM SUPPLIES WHERE Vehicle_id='{}';".format(vehicle_id)
         # print(tQuery)
@@ -57,8 +56,8 @@ def Add_Sale(con, cur):
         profit=sale_price-actprice
         cur_time=time.strftime('%Y-%m-%d %H:%M:%S')
         payment_type=input('Please enter payment type(CASH/CARD/OTHER): ')
-        query="INSERT INTO SALE VALUES({}, '{}', {}, {}, {}, {}, {}, '{}', '{}');".format(
-            sale_id, vehicle_id, customer_aadhar, servicec_id, salep_id, sale_price, profit, cur_time, payment_type)
+        query="INSERT INTO SALE(Vehicle_id, Customer_Aadhar_no, Service_Center_id, SalesPerson_id, Sale_price, Profit, Date, Payment_type) VALUES('{}', {}, {}, {}, {}, {}, '{}', '{}');".format(
+            vehicle_id, customer_aadhar, servicec_id, salep_id, sale_price, profit, cur_time, payment_type)
         cur.execute(query)
         con.commit()
         print("Inserted Into Database")
