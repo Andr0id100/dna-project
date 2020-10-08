@@ -23,7 +23,7 @@ def update_contact(con, cur):
             old_no = int(input("Enter Old phone number: "))
             new_no = int(input("Enter New phone numnber: "))
 
-            query = "UPDATE CUSTOMER_CONTACT SET Contact_number='{}' WHERE Registration_number='{}' AND Contact_number='{}'".format(new_no, reg_no, old_no)
+            query = "UPDATE CLEANING_AGENCY_CONTACT SET Contact_number='{}' WHERE Registration_number='{}' AND Contact_number='{}'".format(new_no, reg_no, old_no)
             cur.execute(query)
             con.commit()
             print("Updated Succesfully")
@@ -34,7 +34,7 @@ def update_contact(con, cur):
             old_no = int(input("Enter Old phone number: "))
             new_no = int(input("Enter New phone numnber: "))
 
-            query = "UPDATE CLEANING_AGENCY_CONTACT SET Contact_number='{}' WHERE Aadhar_number='{}' AND Contact_number='{}'".format(new_no, a_no, old_no)
+            query = "UPDATE CUSTOMER_CONTACT SET Contact_number='{}' WHERE Aadhar_number='{}' AND Contact_number='{}'".format(new_no, a_no, old_no)
             cur.execute(query)
             con.commit()
             print("Updated Succesfully")
