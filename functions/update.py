@@ -11,26 +11,14 @@ wait = lambda: input("Press ENTER key to continue")
 
 def update_contact(con, cur):
     print("|| Update Contact Info ||")
-    print("1. Employee")
-    print("2. Cleaning Agency")
-    print("3. Customer")
-    print("4. Factory")
+    print("1. Cleaning Agency")
+    print("2. Customer")
+    print("3. Factory")
 
     try:
         ch = int(input("Enter choice: "))
         clear()
         if ch == 1:
-            eid = int(input("Enter Employee Id: "))
-            old_no = int(input("Enter Old phone number: "))
-            new_no = int(input("Enter New phone numnber: "))
-
-            query = "UPDATE EMPLOYEE_CONTACT SET Contact_number='{}' WHERE Employee_id='{}' AND Contact_number='{}'".format(new_no, eid, old_no)
-            cur.execute(query)
-            con.commit()
-            print("Updated Succesfully")
-            wait()
-            pass
-        elif ch == 2:
             reg_no = int(input("Enter Agency's Registration Number: "))
             old_no = int(input("Enter Old phone number: "))
             new_no = int(input("Enter New phone numnber: "))
@@ -41,7 +29,7 @@ def update_contact(con, cur):
             print("Updated Succesfully")
             wait()
 
-        elif ch == 3:
+        elif ch == 2:
             a_no = int(input("Enter Aadhar Number of Customer: "))
             old_no = int(input("Enter Old phone number: "))
             new_no = int(input("Enter New phone numnber: "))
@@ -51,7 +39,7 @@ def update_contact(con, cur):
             con.commit()
             print("Updated Succesfully")
             wait()
-        elif ch == 4:
+        elif ch == 3:
             reg_no = int(input("Enter Factory's Registration Number: "))
             old_no = int(input("Enter Old phone number: "))
             new_no = int(input("Enter New phone numnber: "))
